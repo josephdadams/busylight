@@ -1,6 +1,6 @@
 {
 	"name": "@josephdadams/busylight",
-	"version": "1.0.0",
+	"version": "1.0.0-jda.0",
 	"description": "Maintained fork of porsager/busylight with additional Kuando BusyLight model support",
 	"main": "./lib/index.js",
 	"types": "./lib/index.d.ts",
@@ -18,9 +18,17 @@
 	"engines": {
 		"node": ">=18"
 	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"lib",
+		"README.md",
+		"LICENSE"
+	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/josephdadams/busylight.git"
+		"url": "git+https://github.com/josephdadams/busylight.git"
 	},
 	"keywords": [
 		"busylight",

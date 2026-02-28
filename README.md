@@ -1,83 +1,120 @@
-# 🚨 Busylight for node
+# 🚨 Busylight for Node
 
-A node library for the Busylight usb device.
-More info on the Busylight can be found here: http://busylight.com/
+A Node.js library for controlling Busylight USB devices.
+
+More info about Busylight devices: http://busylight.com/
+
+---
+
+## Maintained fork
+
+This is a maintained fork of the original **porsager/busylight** library.
+
+Additional improvements:
+
+- Support for additional Kuando / Plenom BusyLight models
+- Ongoing maintenance and compatibility updates
+
+---
 
 ## Install
 
-    npm install busylight
+```bash
+npm install @josephdadams/busylight
+```
 
-[\*extra steps for node-webkit](#node-webkit)
+---
 
-# Quick start
+## Quick start
 
 ### Get a Busylight
 
-    var busylight = require('busylight').get()
+```js
+const busylight = require('@josephdadams/busylight').get()
+```
 
 ### Make it dance
 
-    busylight.ring().pulse();
+```js
+busylight.ring().pulse()
+```
 
-### STOP!
+### Stop
 
-    busylight.off();
+```js
+busylight.off()
+```
 
-### Hammertime...
+### Hammertime
 
-    busylight.ring('Funky').blink(['red', 'yellow', 'blue', 'green'], 150);
+```js
+busylight.ring('Funky').blink(['red', 'yellow', 'blue', 'green'], 150)
+```
 
-# Usage
+---
 
-### Finding an attached busylight
+## Usage
 
-Get the first available busylight
+### Finding an attached Busylight
 
-    var busylight = require('busylight').get()
+Get the first available Busylight:
 
-Get a specific Busylight attached to the system.
+```js
+const busylight = require('@josephdadams/busylight').get()
+```
 
-    var busylight = require('busylight').get(path);
+Get a specific Busylight:
 
-The path can be found by looking at the connected Busylights.
-Pass true if you want to see all connected USB HIDs. This can be useful if the Busylight is not detected.
+```js
+const busylight = require('@josephdadams/busylight').get(path)
+```
 
-    var busylights = require('busylight').devices(showAllUSBDevices);
+List connected devices:
 
-### Defaults method
+```js
+const busylights = require('@josephdadams/busylight').devices(showAllUSBDevices)
+```
 
-Set up different defaults that the busyligt will use if you don't give specific instructions
+Pass `true` to see all USB HID devices if the Busylight is not detected.
 
-    busylight.defaults({
-      keepalive: true,      // If the busylight is not kept alive it will turn off after 30 seconds
-      color: 'white',       // The default color to use for light, blink and pulse
-      duration: 30 * 1000,  // The duration for a blink or pulse sequence
-      rate: 300,            // The rate at which to blink or pulse
-      degamma: true,        // Fix rgb colors to present a better light
-      tone: 'OpenOffice',   // Default ring tone
-      volume: 4             // Default volume
-    });
+---
+
+### Defaults
+
+Configure default behavior:
+
+```js
+busylight.defaults({
+  keepalive: true,
+  color: 'white',
+  duration: 30 * 1000,
+  rate: 300,
+  degamma: true,
+  tone: 'OpenOffice',
+  volume: 4
+})
+```
+
+---
 
 ### light(color)
 
-To make the busylight light a specific color just use a valid css color.
+```js
+busylight.light('orange')
+busylight.light(false)
+```
 
-    busylight.light('orange')
-
-To turn it off
-
-    busylight.light(false);
+---
 
 ### ring(tone, volume)
 
-Make the busylight play a ringtone
+```js
+busylight.ring('OpenOffice')
+```
 
-    busylight.ring('OpenOffice')
+Volume range: 0–7
 
-Volumesteps
-The busylight accepts volume values of 0-7
-
-Ringtones
+Ringtones:
 
 - OpenOffice
 - Quiet
@@ -87,57 +124,81 @@ Ringtones
 - TelephoneNordic
 - TelephoneOriginal
 - TelephonePickMeUp
-- Buzz (Basically annoying white noise)
+- Buzz
+
+---
 
 ### blink(colors, rate)
 
-Fades smoothly between colors. If only a single color is defined it will pulse between that color and no light
+```js
+busylight.blink(['red', 'green', 'blue'], 500)
+```
 
-    busylight.blink(['red', 'green', 'blue'], 500);
+---
 
 ### pulse(colors, rate)
 
-The pulse method fades smoothly between the defined colors. If only a single color is defined it will pulse between that color and no light
+```js
+busylight.pulse(['#f00', '#0f0', '#00f'])
+```
 
-    busylight.pulse(['#f00', '#0f0', '#00f']);
+---
 
 ### off()
 
-Turns everything off.
+```js
+busylight.off()
+```
 
-    busylight.off();
+---
 
 ### close()
 
-When you are done using the busylight you can use the close method to shut down the connection correctly
+```js
+busylight.close()
+```
 
-    busylight.close();
+---
 
 ### Chaining
 
-Simple chaining is available to let you eg. ring and blink in one go
+```js
+busylight.ring().blink()
+busylight.ring(false).blink(false)
+```
 
-    busylight.ring().blink();
+---
 
-Turn it off again
+## Supported devices
 
-    busylight.ring(false).blink(false);
+Primarily Kuando / Plenom BusyLight devices.
 
-# Supports
+Additional models supported in this fork.
 
-Currently only the Kuando Busylight has been tested, but it seems the busylight unit is available under different names
+---
 
-- Kuando Busylight
+## TypeScript
 
-### TypeScript
+Type definitions are included.
 
-Busylight supports TypeScript with own Type Definition files. Enjoy! :)
+---
 
-### [Electron](https://github.com/electron/electron) and [Electron.NET](https://github.com/ElectronNET/Electron.NET)
+## Electron
 
-Busylight relies on node-hid. node-hid needs to be built for each different Electron Node.js integration a own build. Use for that [electron-rebuild](https://github.com/electron/electron-rebuild)
+Busylight relies on node-hid. node-hid must be rebuilt for each Electron version.
 
-### <a name="node-webkit"></a>Node-webkit
+https://github.com/electron/electron-rebuild
 
-Busylight relies on node-hid. node-hid needs to be built for each platform and specific version of node-webkit, so to make it work you need to build node-hid using nw-gyp
+---
+
+## Node-webkit
+
+node-hid must be built for each node-webkit version using nw-gyp:
+
 https://github.com/rogerwang/node-webkit/wiki/Build-native-modules-with-nw-gyp
+
+---
+
+## License
+
+MIT — original authors retain copyright.
