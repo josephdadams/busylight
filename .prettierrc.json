@@ -23,6 +23,12 @@
 				"useTabs": false,
 				"printWidth": 80
 			}
+		},
+		{
+			"files": "*.yml",
+			"options": {
+				"useTabs": false
+			}
 		}
 	]
 }

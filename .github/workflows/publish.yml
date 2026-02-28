@@ -1,11 +1,11 @@
-name: Publish
+name: Release
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: [main]
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,26 +21,20 @@ jobs:
       - name: Install
         run: yarn install --frozen-lockfile
 
-      - name: Build (if needed)
-        run: |
-          if [ -f package.json ] && jq -e '.scripts.build' package.json > /dev/null; then
-            yarn build
-          fi
-
       - name: Check if version exists
         id: version_check
         run: |
-            VERSION=$(node -p "require('./package.json').version")
-            NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          NAME=$(node -p "require('./package.json').name")
 
-            if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-            else
-            echo "exists=false" >> $GITHUB_OUTPUT
-            fi
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+              echo "exists=true" >> $GITHUB_OUTPUT
+          else
+              echo "exists=false" >> $GITHUB_OUTPUT
+          fi
 
-        - name: Publish
+      - name: Publish
         if: steps.version_check.outputs.exists == 'false'
         run: npm publish
         env:
-            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

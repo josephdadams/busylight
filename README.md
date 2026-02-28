@@ -91,7 +91,7 @@ busylight.defaults({
   rate: 300,
   degamma: true,
   tone: 'OpenOffice',
-  volume: 4
+  volume: 4,
 })
 ```
 
