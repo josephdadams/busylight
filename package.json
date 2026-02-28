@@ -1,35 +1,48 @@
 {
-  "name": "busylight",
-  "version": "1.0.0-rc1",
-  "description": "node library for busylight",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
-  "author": {
-    "name": "Rasmus Porsager",
-    "email": "rasmus@porsager.com",
-    "url": "https://github.com/porsager"
-  },
-  "engines": {
-    "node": ">=0.8.0"
-  },
-  "repository": "porsager/busylight",
-  "keywords": [
-    "lync",
-    "uc",
-    "kuando",
-    "hid"
-  ],
-  "dependencies": {
-    "node-hid": "3.2.0",
-    "pwmcolorparser": "1.1.1"
-  },
-  "homepage": "http://github.com/porsager/busylight/",
-  "bugs": {
-    "url": "http://github.com/porsager/busylight/issues",
-    "email": "rasmus@porsager.com"
-  },
-  "scripts": {
-    "test": "echo 'disabled for now - no device to test with'"
-  },
-  "license": "MIT"
+	"name": "@josephdadams/busylight",
+	"version": "1.0.0",
+	"description": "Maintained fork of porsager/busylight with additional Kuando BusyLight model support",
+	"main": "./lib/index.js",
+	"types": "./lib/index.d.ts",
+	"author": {
+		"name": "Rasmus Porsager",
+		"email": "rasmus@porsager.com",
+		"url": "https://github.com/porsager"
+	},
+	"contributors": [
+		{
+			"name": "Joseph Adams",
+			"url": "https://github.com/josephdadams"
+		}
+	],
+	"engines": {
+		"node": ">=18"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/josephdadams/busylight.git"
+	},
+	"keywords": [
+		"busylight",
+		"kuando",
+		"plenome",
+		"hid",
+		"status-light",
+		"lync",
+		"uc"
+	],
+	"dependencies": {
+		"node-hid": "3.2.0",
+		"prettier": "^3.8.1",
+		"pwmcolorparser": "1.1.1"
+	},
+	"homepage": "https://github.com/josephdadams/busylight",
+	"bugs": {
+		"url": "https://github.com/josephdadams/busylight/issues"
+	},
+	"scripts": {
+		"test": "echo 'disabled for now - no device to test with'",
+		"format": "prettier . --write"
+	},
+	"license": "MIT"
 }
