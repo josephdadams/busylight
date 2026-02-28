@@ -1,6 +1,6 @@
 {
 	"name": "@josephdadams/busylight",
-	"version": "1.0.0-jda.0",
+	"version": "1.0.0-jda.1",
 	"description": "Maintained fork of porsager/busylight with additional Kuando BusyLight model support",
 	"main": "./lib/index.js",
 	"types": "./lib/index.d.ts",
