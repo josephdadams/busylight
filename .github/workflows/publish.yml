@@ -1,5 +1,9 @@
 name: Release
 
+permissions:
+  contents: read
+  id-token: write
+
 on:
   push:
     branches: [main]
@@ -35,6 +39,6 @@ jobs:
 
       - name: Publish
         if: steps.version_check.outputs.exists == 'false'
-        run: npm publish
+        run: npm publish --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
