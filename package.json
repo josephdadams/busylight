@@ -21,12 +21,6 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"files": [
-		"lib",
-		"README.md",
-		"LICENSE",
-    "supported.json"
-	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/josephdadams/busylight.git"
